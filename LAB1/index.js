@@ -9,8 +9,8 @@ const findSum = (a, b) => a + b;
 function sum(a, b) {
   return a + b;
 }
-sayHi("Janvi Tanwar");
-sayHello("Angel Kapasia");
+sayHi("Anshika");
+sayHello("Palak");
 
 console.log(`sum of 2 and 5 is ${sum(2, 5)}`);
 console.log(`sum of 2 and 5 is ${findSum(2, 5)}`);
