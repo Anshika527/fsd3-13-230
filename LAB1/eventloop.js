@@ -15,7 +15,8 @@ const f3 = () => {
 const main = () => {
   console.log("main");
    f1();
-   setTimeout(f2,5000);
+   //setTimeout(f2,0);
+   setInterval(f2,10);
    f3();
   console.log("end");
 };
