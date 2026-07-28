@@ -31,6 +31,8 @@ const main = () => {
   new Promise((resolve, reject) => {
     console.log("I am promise2 ");
   });
+
+  f3();
 };
 
 main();
