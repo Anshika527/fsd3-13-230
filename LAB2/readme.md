@@ -11,18 +11,47 @@
     -mkdir()
     -rmdir()
     -readdir()
-    # metadata
+
+# metadata
+
     fstat()
-    # watching for changes
+
+# watching for changes
+
     -watch()
     -watchFile()
     -unwatchFile()
-    # straming large file
+
+# straming large file
+
      -createReadStream()
      -createWritestream()
-     # File opeartions
+
+# File opeartions
+
      -rename()
      -truncate()
      -unlik()
      -link()
      -syslink()
+
+## CRUD operation
+
+    create/ insert, read/retrive,update,delete
+
+## Item
+
+id ,name,price,qty
+
+## operations
+
+1. add to cart
+2. show cart
+3. remove item from cart
+4. checkout
+   NOTE : all items will be stored in hdd, so after termination of program we can retrieve cart details
+
+## required files
+
+1. crud.js - it contains all the methods and eentry point
+2. products.json -it contains the product details in array form
