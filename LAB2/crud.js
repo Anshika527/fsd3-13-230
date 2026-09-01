@@ -1,18 +1,41 @@
 import readline from "readline/promises";
 import { stdin, stdout } from "process";
-import {writeFile,readFile} from "fs/promises";
+import { writeFile, readFile } from "fs/promises";
 
+const FILE = "products.json";
 
-const FILE="products.json"
+const saveCart = async (cart) => {
+  await writeFile(FILE, JSON.stringify(cart, null, 2));
+};
 
-const saveCart=(cart)=>{
-    await writeFile(FILE,JSON.stringify(cart,null,2));
-}
+const getCart = async () => {
+  const data = await readFile(FILE, "utf-8");
+  return JSON.parse(data);
+};
 
-const getCart = () => {
-    const data=await readFile(FILE,"utf-8");
-    return JSON.parse(data);
+const addToCart = async (item) => {
+  const products = await getCart();
+  const productFound = products.find((p) => p.id === item.id);
+  if (productFound) {
+    productFound.qty += item.qty;
+    console.log("Product in cart quantity updated");
+  } else {
+    products.push(item);
+    console.log("Product added seccessfully 👍");
+  }
+  await saveCart(products);
+};
 
+const showCart = () => {
+  console.log("show cart");
+};
+
+const removeCart = () => {
+  console.log("remove item");
+};
+
+const updateCart = () => {
+  console.log("update the cart");
 };
 
 const main = async () => {
@@ -26,20 +49,33 @@ const main = async () => {
     console.log("4   update quantity");
     console.log("5   checkout");
     choice = await cin.question("Enter your choice :");
-    console.log("Entered choice:", choice);
     switch (Number(choice)) {
       case 1:
-        console.log("add to cart");
+        let data = await cin.question("enter id,name,price,qty");
+        let p = data.split(",");
+        let q = p.map((item) => item.trim());
+        let [id, name, price, qty] = q;
+
+        console.log(id, name, price, qty);
+
+        const product = {
+          id: Number(id),
+          name,
+          price: Number(price),
+          qty: Number(qty),
+        };
+
+        await addToCart(product);
         break;
       case 2:
-        console.log("show cart items");
+        showCart();
         break;
 
       case 3:
-        console.log("remove items");
+        removeCart();
         break;
       case 4:
-        console.log("aupdate quantity");
+        updateCart();
         break;
       case 5:
         console.log("see you later... 😄");
