@@ -89,3 +89,17 @@ the content type and status code can be send back to client by two ways
     review:200
 }
 ```
+
+## Headers
+
+headres are used to tell the client,the type of data sent by the server it may be html files,json file/data plain text files css files any tokens(for login)
+
+1.  text/plain -> text file
+2.  test/html -> html contents/file
+3.  application/json -> json contents/file
+4.  text/css -> stylesheet
+5.  application/form-data -> for uploading file
+6.  application/auth -> for tokens
+
+- the headers can be set by res object at server side by two ways
+
