@@ -5,10 +5,13 @@ const products = [
 
 let nextId = 3;
 
- export const getAllProducts = () => {
+export const getAllProducts = () => {
   return products;
 };
 
-export const addProducts=()=>{ 
-
-}
+export const addProducts = (item) => {
+  item.id = nextId;
+  nextId++;
+  products.push(item);
+  return item;
+};
