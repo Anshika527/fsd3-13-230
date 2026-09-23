@@ -35,5 +35,5 @@ export const updateProduct = (pid, updateItem) => {
 export const getProductById = (pid) => {
   const index = products.findIndex((prd) => prd.id == pid);
   if (index == -1) return false;
-  return products[item];
+  return products[index];
 };

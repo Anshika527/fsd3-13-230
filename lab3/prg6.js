@@ -29,7 +29,7 @@ const server = http.createServer((req, res) => {
       res.statusCode = 201;
       res.end(JSON.stringify({ msg: "product added", data: item }));
     });
-  } else if (req.url.startsWith("/products") && req.method === "PUT") {
+  } else if (req.url.startsWith("/api/v1/products") && req.method === "PUT") {
     const productID = req.url.split("/").pop();
     console.log("update product id:", productID);
     let body = "";
@@ -39,9 +39,9 @@ const server = http.createServer((req, res) => {
     req.on("end", () => {
       const product = JSON.parse(body);
       product.id = productID;
-      const updatePrd = updateProduct(productId, product);
+      const updatePrd = updateProduct(productID, product);
       if (!updatePrd)
-        res.end(JSON.stringify({ msg: `id ${productId} not found` }));
+        res.end(JSON.stringify({ msg: `id ${productID} not found` }));
       else {
         res.statusCode = 200;
         res.end(JSON.stringify({ msg: "product UPDATED", updatePrd }));
