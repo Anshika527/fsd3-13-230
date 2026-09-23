@@ -16,11 +16,24 @@ export const addProducts = (item) => {
   return item;
 };
 
-export const deleteProduct=(pid)=>{
-    const item=products.findIndex((prd)=>prd.id==pid);
-    if (item==-1)
-        return false;
-    products.splice(item,1)
-    console.log("products remaining:",products);
-    return true;
+export const deleteProduct = (pid) => {
+  const item = products.findIndex((prd) => prd.id == pid);
+  if (item == -1) return false;
+  products.splice(item, 1);
+  console.log("products remaining:", products);
+  return true;
+};
+// create a function update product function given pid and call this function into prg 6 and and verify using echo api.
+export const updateProduct = (pid, updateItem) => {
+  const index = products.findIndex((prd) => prd.id == pid);
+  if (index == -1) return false;
+  updateItem.id = pid;
+  products[index] = updateItem;
+  return updateItem;
+};
+
+export const getProductById = (pid) => {
+  const index = products.findIndex((prd) => prd.id == pid);
+  if (index == -1) return false;
+  return products[item];
 };

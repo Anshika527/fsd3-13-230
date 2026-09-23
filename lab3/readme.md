@@ -103,3 +103,18 @@ headres are used to tell the client,the type of data sent by the server it may b
 
 - the headers can be set by res object at server side by two ways
 
+## for get request
+
+- no parameters will passed to the servers when we receive all items.
+
+## for post request
+
+- to add records we pass the value from body section in JSON format of api tester.
+
+## for delete product
+
+- to delete any product we pass parameter that is Id of the product from URL (url/id).
+
+## for put/patch request
+
+- to update any product we pass Id from URL and data to update from body.

@@ -2,6 +2,8 @@ import http from "http";
 import { getAllProducts } from "./products.js";
 import { addProducts } from "./products.js";
 import { deleteProduct } from "./products.js";
+import { updateProduct } from "./products.js";
+import { getProductById } from "./products.js";
 
 const server = http.createServer((req, res) => {
   if (req.url === "/api/v1/products" && req.method === "GET") {
@@ -37,8 +39,13 @@ const server = http.createServer((req, res) => {
     req.on("end", () => {
       const product = JSON.parse(body);
       product.id = productID;
-      res.statusCode = 200;
-      res.end(JSON.stringify({ msg: "product UPDATED", product }));
+      const updatePrd = updateProduct(productId, product);
+      if (!updatePrd)
+        res.end(JSON.stringify({ msg: `id ${productId} not found` }));
+      else {
+        res.statusCode = 200;
+        res.end(JSON.stringify({ msg: "product UPDATED", updatePrd }));
+      }
     });
   } else if (
     req.url.startsWith("/api/v1/products/") &&
@@ -49,6 +56,17 @@ const server = http.createServer((req, res) => {
     res.statusCode = 200;
     if (deleteProduct(pid)) {
       res.end(JSON.stringify({ msg: "item deleted" }));
+    } else {
+      res.end(JSON.stringify({ msg: `products with id ${pid} not found` }));
+    }
+  } else if (req.url.startsWith("/api/v1/products/") && req.method === "GET") {
+    const pid = Number(req.url.split("/").pop());
+
+    res.statusCode = 200;
+    const product = getProductById(pid);
+
+    if (product) {
+      res.end(JSON.stringify({ data: product }));
     } else {
       res.end(JSON.stringify({ msg: `products with id ${pid} not found` }));
     }
