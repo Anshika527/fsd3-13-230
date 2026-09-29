@@ -13,5 +13,8 @@
    }
 7. create prg1.js in folder
 8. add folderName/node_modules in .gitignore
-# send 
-- function is use to revert back contents to the client,it may be html,json,html file,plain file.we can also add status code with status function, it can be chain with send function. 
+
+# send
+
+- function is use to revert back contents to the client,it may be html,json,html file,plain file.we can also add status code with status function, it can be chain with send function.
+
