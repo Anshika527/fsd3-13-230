@@ -15,7 +15,7 @@ app.get("/api/products", (req, res) => {
 app.get("/api/products/:id", (req, res) => {
   const { id } = req.params;
   const p = products.find((item) => item.id === Number(id));
-  if (p) res.status(200).json({ status: found, product: p });
+  if (p) res.status(200).json({ status: true, data: p });
   else
     res
       .status(404)
